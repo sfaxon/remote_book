@@ -20,6 +20,7 @@ for rails, add something like this to an initializer
                                          :secret_key    => "secret_digits"}
 
     RemoteBook::BarnesAndNoble.associate_keys = {:web_service_token => "token"}
+    To get the token, login to LinkShare, Links => Web Services (something like: http://cli.linksynergy.com/cli/publisher/links/webServices.php)
 
 Right now it just searches by ISBN, so:
 

@@ -9,7 +9,7 @@ module RemoteBook
       if options[:isbn]
         bn_page = barnes_and_noble_page_link_for(options[:isbn])
         return nil unless bn_page
-        puts "bn_page: #{bn_page}"
+
         b.link = link_share_deep_link_for(bn_page)
       end
       b
@@ -22,8 +22,6 @@ module RemoteBook
     # pass the ISBN to the search service, read the redirect information, and use that as store link
     def self.barnes_and_noble_page_link_for(isbn)
       search_path = build_isbn_lookup_query(isbn)
-      puts search_path
-      debugger
       response = RemoteBook.get_url(search_path, :read_timeout => 6, :open_timeout => 4)
       if response.respond_to?(:each_header)
         response.each_header do |name, value|
