@@ -1,0 +1,32 @@
+= RemoteBook
+
+RemoteBook is a gem for searching Amazon & B&N for books.  Returned links have associate information in the links.  
+
+== Installation
+
+It's a gem. Either run `gem install remote_book` at the command line, or add `gem 'remote_book'` to your Gemfile.
+
+== Usage
+
+Get your affiliate digits:
+
+    https://affiliate-program.amazon.com/
+    http://affiliates.barnesandnoble.com/ - sign up with LinkShare, wonder why Amazon is more popular
+  
+for rails, add something like this to an initializer
+
+    RemoteBook::Amazon.associate_keys = {:associates_id => "me", 
+                                         :key_id        => "digits",
+                                         :secret_key    => "secret_digits"}
+
+Right now it just searches by ISBN, so:
+
+    a = RemoteBook::Amazon.find_by_isbn("somedigits")
+    a.large_image
+    a.medium_image
+    a.small_image
+    a.link
+    a.author
+    a.title
+
+
