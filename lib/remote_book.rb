@@ -1,7 +1,12 @@
-require "remote_book/version"
-require "remote_book/remote_book"
-require "remote_book/amazon_book"
+require "rubygems"
+require "uri"
+require "openssl"
+require "typhoeus"
+require "nokogiri"
+
+require "remote_book/base"
+require "remote_book/amazon"
 
 module RemoteBook
-  # Your code goes here...
+  VERSION = File.read(File.dirname(__FILE__) + "/../VERSION").chomp
 end
