@@ -22,14 +22,11 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<typhoeus>)
       s.add_runtime_dependency(%q<nokogiri>)
     else
-      s.add_dependency(%q<typhoeus>)
       s.add_dependency(%q<nokogiri>)
     end
   else
-    s.add_dependency(%q<typhoeus>)
     s.add_dependency(%q<nokogiri>)
   end
 end

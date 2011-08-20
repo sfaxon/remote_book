@@ -9,9 +9,9 @@ module RemoteBook
       # unless DIGEST_SUPPORT raise "no digest sup"
       if options[:isbn]
         req = build_isbn_lookup_query(options[:isbn])
-        response = Typhoeus::Request.get(req)
+        response = RemoteBook.get_url(req)
 
-        if 200 == response.code
+        if response.respond_to?(:code) && "200" == response.code
           xml_doc = Nokogiri.XML(response.body)
         else 
           return false 
@@ -67,7 +67,6 @@ module RemoteBook
       # I'm only doing this so the checksum comes out correctly with the example from the amazon documentation
       query << "&Timestamp=#{Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ')}" unless query.include?("Timestamp")
       new_query = query.split('&').collect{|param| "#{param.split('=')[0]}=#{url_encode(param.split('=')[1])}"}.sort.join('&')
-      # puts new_query
       to_sign = "GET\n%s\n%s\n%s" % [uri.host, uri.path, new_query]
       # step 7 of http://docs.amazonwebservices.com/AWSECommerceService/latest/DG/index.html?rest-signature.html
       hmac = OpenSSL::HMAC.digest(DIGEST, amazon_secret_access_key, to_sign)
