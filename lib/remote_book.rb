@@ -2,7 +2,6 @@ require "rubygems"
 require "uri"
 require "net/http"
 require "openssl"
-require "typhoeus"
 require "nokogiri"
 
 require "remote_book/base"
