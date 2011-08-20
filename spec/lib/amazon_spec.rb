@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'ruby-debug'
 
 describe RemoteBook::Amazon do
   before(:each) do
@@ -12,5 +11,5 @@ describe RemoteBook::Amazon do
     a = RemoteBook::Amazon.find_by_isbn("1433506254")
     a.large_image.should == "http://ecx.images-amazon.com/images/I/41xMfBAsMnL.jpg"
   end
-  
+
 end
