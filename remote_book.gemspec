@@ -7,11 +7,15 @@ Gem::Specification.new do |s|
   s.version     = RemoteBook::VERSION
   s.authors     = ["Seth Faxon"]
   s.email       = ["seth.faxon@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/sfaxon/remote_book"
   s.summary     = %q{Pull book affiliate links and images from Amazon, Barns & Noble}
   s.description = %q{Pull book affiliate links and images from Amazon, Barns & Noble}
 
   s.rubyforge_project = "remote_book"
+  
+  s.extra_rdoc_files = [
+    "README.rdoc"
+  ]
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
