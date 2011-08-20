@@ -7,6 +7,7 @@ require "nokogiri"
 
 require "remote_book/base"
 require "remote_book/amazon"
+require "remote_book/barnes_and_noble"
 
 module RemoteBook
   VERSION = File.read(File.dirname(__FILE__) + "/../VERSION").chomp

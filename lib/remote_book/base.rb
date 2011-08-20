@@ -1,6 +1,6 @@
 module RemoteBook
   class Base
-    attr_accessor :large_image, :medium_image, :small_image, :link, :authors, :title, :isbn, :digital_link
+    attr_accessor :link, :isbn
     
     def author
       @authors.join(", ")
@@ -20,7 +20,7 @@ module RemoteBook
       end
       
       def find_by_isbn(isbn)
-        self.find(:isbn => isbn)
+        find(:isbn => isbn)
       end
 
       def find(options)

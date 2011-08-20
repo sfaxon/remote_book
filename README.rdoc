@@ -1,6 +1,6 @@
 = RemoteBook
 
-RemoteBook is a gem for searching Amazon & B&N for books.  Returned links have associate information in the links.  
+RemoteBook is a gem for creating affiliate links to Amazon & B&N for books.
 
 == Installation
 
@@ -19,6 +19,8 @@ for rails, add something like this to an initializer
                                          :key_id        => "digits",
                                          :secret_key    => "secret_digits"}
 
+    RemoteBook::BarnesAndNoble.associate_keys = {:web_service_token => "token"}
+
 Right now it just searches by ISBN, so:
 
     a = RemoteBook::Amazon.find_by_isbn("somedigits")
@@ -29,4 +31,7 @@ Right now it just searches by ISBN, so:
     a.author
     a.title
 
+    b = RemoteBook::BarnesAndNoble.find_by_isbn("digits")
+    b.link
 
+Barnes And Noble's LinkShare api isn't really much of an API, so all the BN class returns is a link.  The Barnes And Noble API is very slow, everything returned from these classes should be cached on your end.  You have been warned.
