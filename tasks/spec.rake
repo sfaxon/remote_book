@@ -20,7 +20,6 @@ namespace :spec do
   desc "Test the remote_book library"
   RSpec::Core::RakeTask.new(:remote_book_lib) do |task|
     remote_book_root = File.expand_path(File.dirname(__FILE__) + '/..')
-    puts remote_book_root
     task.pattern = remote_book_root + '/spec/lib/**/*_spec.rb'
   end
 
