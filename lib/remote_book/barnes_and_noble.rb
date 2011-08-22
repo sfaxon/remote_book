@@ -1,4 +1,7 @@
 module RemoteBook
+  class BarnesAndNobleError < RemoteBook::RemoteBookError #:nodoc:
+  end
+
   class BarnesAndNoble < RemoteBook::Base
     ISBN_SEARCH_BASE_URI = "http://search.barnesandnoble.com/booksearch/isbnInquiry.asp?ISBSRC=Y&ISBN="
     LINK_SHARE_DEEP_LINK_BASE = "http://getdeeplink.linksynergy.com/createcustomlink.shtml"

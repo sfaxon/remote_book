@@ -28,4 +28,6 @@ module RemoteBook
       end
     end
   end
+  class RemoteBookError < StandardError #:nodoc:
+  end
 end

@@ -1,4 +1,7 @@
 module RemoteBook
+  class AmazonError < RemoteBook::RemoteBookError #:nodoc:
+  end
+
   class Amazon < RemoteBook::Base
     # FIXME: failed digest support should raise exception.
     # mac os 10.5 does not ship with SHA256 support built into ruby, 10.6 does. 
@@ -8,6 +11,9 @@ module RemoteBook
     attr_accessor :large_image, :medium_image, :small_image, :authors, :title
 
     def self.find(options)
+      raise AmazonError.new("RemoteBook::Amazon.associate_keys requires :key_id") unless associate_keys.has_key?(:key_id)
+      raise AmazonError.new("RemoteBook::Amazon.associate_keys requires :associates_id") unless associate_keys.has_key?(:associates_id)
+      raise AmazonError.new("RemoteBook::Amazon.associate_keys requires :secret_key") unless associate_keys.has_key?(:secret_key)
       a = new
       # unless DIGEST_SUPPORT raise "no digest sup"
       if options[:isbn]
