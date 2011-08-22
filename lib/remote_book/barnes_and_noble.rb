@@ -4,13 +4,17 @@ module RemoteBook
     LINK_SHARE_DEEP_LINK_BASE = "http://getdeeplink.linksynergy.com/createcustomlink.shtml"
     BN_LINK_SHARE_MID = "36889"
     
+    attr_accessor :raw_link, :affiliate_link
+
     def self.find(options)
       b = new
       if options[:isbn]
         bn_page = barnes_and_noble_page_link_for(options[:isbn])
         return nil unless bn_page
+        b.raw_link = bn_page
+        b.affiliate_link = link_share_deep_link_for(bn_page)
 
-        b.link = link_share_deep_link_for(bn_page)
+        b.link = b.affiliate_link.nil? ? b.raw_link : b.affiliate_link
       end
       b
     end

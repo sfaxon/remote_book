@@ -1,12 +1,12 @@
 module RemoteBook
   class Amazon < RemoteBook::Base
-    attr_accessor :large_image, :medium_image, :small_image, :authors, :title, :isbn, :digital_link
-    
     # FIXME: failed digest support should raise exception.
     # mac os 10.5 does not ship with SHA256 support built into ruby, 10.6 does. 
     DIGEST_SUPPORT = ::OpenSSL::Digest.constants.include?('SHA256') || ::OpenSSL::Digest.constants.include?(:SHA256)
     DIGEST = ::OpenSSL::Digest::Digest.new('sha256') if DIGEST_SUPPORT
     
+    attr_accessor :large_image, :medium_image, :small_image, :authors, :title
+
     def self.find(options)
       a = new
       # unless DIGEST_SUPPORT raise "no digest sup"
