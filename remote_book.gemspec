@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/sfaxon/remote_book"
   s.summary     = %q{Pull book affiliate links and images from Amazon, Barns & Noble}
   s.description = %q{Pull book affiliate links and images from Amazon, Barns & Noble}
-  s.date        = %q{2011-08-21}
+  s.date        = %q{2011-08-22}
 
   s.rubyforge_project = "remote_book"
   

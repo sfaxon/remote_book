@@ -8,7 +8,7 @@ module RemoteBook
     DIGEST_SUPPORT = ::OpenSSL::Digest.constants.include?('SHA256') || ::OpenSSL::Digest.constants.include?(:SHA256)
     DIGEST = ::OpenSSL::Digest::Digest.new('sha256') if DIGEST_SUPPORT
     
-    attr_accessor :large_image, :medium_image, :small_image, :authors, :title
+    attr_accessor :large_image, :medium_image, :small_image, :authors, :title, :raw_response
 
     def self.find(options)
       raise AmazonError.new("RemoteBook::Amazon.associate_keys requires :key_id") unless associate_keys.has_key?(:key_id)
@@ -18,11 +18,11 @@ module RemoteBook
       # unless DIGEST_SUPPORT raise "no digest sup"
       if options[:isbn]
         req = build_isbn_lookup_query(options[:isbn])
-        response = RemoteBook.get_url(req)
+        a.raw_response = RemoteBook.get_url(req)
 
-        if response.respond_to?(:code) && "200" == response.code
-          xml_doc = Nokogiri.XML(response.body)
-        else 
+        if a.raw_response.respond_to?(:code) && "200" == a.raw_response.code
+          xml_doc = Nokogiri.XML(a.raw_response.body)
+        else
           return false 
         end
 
@@ -34,7 +34,7 @@ module RemoteBook
             a.medium_image = xml_doc.xpath("//xmlns:Items/xmlns:Item/xmlns:MediumImage/xmlns:URL").inner_text
           end
           if xml_doc.xpath("//xmlns:Items/xmlns:Item/xmlns:SmallImage/xmlns:URL")
-            a.small_image  = xml_doc.xpath("//xmlns:Items/xmlns:Item/xmlns:SmallImage/xmlns:URL")
+            a.small_image  = xml_doc.xpath("//xmlns:Items/xmlns:Item/xmlns:SmallImage/xmlns:URL").inner_text
           end
           a.title        = xml_doc.xpath("//xmlns:Items/xmlns:Item/xmlns:ItemAttributes/xmlns:Title").inner_text
           a.authors = []
