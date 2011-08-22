@@ -9,8 +9,6 @@ require "remote_book/amazon"
 require "remote_book/barnes_and_noble"
 
 module RemoteBook
-  VERSION = File.read(File.dirname(__FILE__) + "/../VERSION").chomp
-
   def self.get_url(url, options = {:read_timeout => 2, :open_timeout => 2})
     uri = URI.parse(url)
 

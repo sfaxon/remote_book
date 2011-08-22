@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "remote_book"
+require "remote_book/version"
 
 Gem::Specification.new do |s|
   s.name        = "remote_book"
