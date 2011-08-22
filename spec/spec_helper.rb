@@ -2,7 +2,7 @@
 # in spec/support/ and its subdirectories.
 # Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
-
+require 'remote_book'
 require 'fakeweb'
 
 RSpec.configure do |config|
